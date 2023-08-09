@@ -41,6 +41,7 @@ export default function Home() {
 	const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const form = e.currentTarget;
+
 		const data = new FormData(form);
 		const name = data.get("task") as string;
 		const ids = tasks.length > 0 ? tasks.map((task) => task.id) : [0];
@@ -56,6 +57,10 @@ export default function Home() {
 			},
 		];
 		setTasks(newTasks);
+    form.reset();
+    // focus on the input
+    const input = form.querySelector<HTMLInputElement>('input[name="task"]');
+    input?.focus();
 	};
 
 	return (
